@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ACM RecSys ’25, Prague, Czech Republic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <!-- Bootstrap FIRST -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Your site CSS AFTER Bootstrap so it can override -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <style>
+      :root { --box-max: 1000px; }
+
+      .section-box {
+        max-width: var(--box-max);
+        margin-inline: auto;
+        padding: clamp(12px, 2vw, 30px);
+        background-color: rgb(254, 248, 248);
+      }
+      .section-box--plain {
+        background: transparent;
+      }
+	  
+
+      /* Headings scale nicely on small screens */
+      h2 { font-size: clamp(1.4rem, 3.8vw, 2rem); color: rgb(15, 89, 89); }
+      h3 { font-size: clamp(1.1rem, 3.4vw, 1.75rem); }
+      h4 { font-size: clamp(0.95rem, 2.6vw, 1.125rem); }
+
+      /* Avoid overflows */
+      h2, h3, h4 { word-break: break-word; }
+
+      /* Optional: soften paragraph width for readability */
+      .prose { max-width: 70ch; margin-inline: auto; text-align: justify; }
+
+      /* Remove old fixed widths */
+      .box1, .box { width: 100%; max-width: var(--box-max); margin-inline: auto; }
+
+      /* Author cards are centered and responsive */
+      
+
+      /* Space between sections */
+      .spacer { height: clamp(8px, 2vw, 20px); }
+    </style>
+  </head>
+
+  <body>
+    <div id="page-wrapper">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-md bg-light sticky-top border-bottom mx-auto">
+        <div class="container">
+          <a class="navbar-brand fw-semibold" href="index.html"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav"
+                  aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="topnav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item"><a class="nav-link fw-bold text-dark" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link fw-bold text-dark" href="#" data-load="results.html">Results</a></li>
+              <li class="nav-item"><a class="nav-link fw-bold text-dark" href="#" data-load="hyperparameters.html">Hyperparameter tuning</a></li>
+              <li class="nav-item"><a class="nav-link fw-bold text-dark" href="#" data-load="paper_analysis.html">Analysis of considered GNN models</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Header text -->
+      <header class="container text-center my-4">
+        <h2 class="mb-2">ACM RecSys ’25, Prague, Czech Republic</h2>
+        <h3 class="mb-2 text-dark">Revisiting the Performance of Graph Neural Networks for Session-based Recommendation</h3>
+        <h4 class="text-muted">
+          Additional material: Source code, Datasets, Hyperparameter ranges,
+          Optimal hyperparameter values per dataset and Additional results
+        </h4>
+      </header>
+
+      <!-- Authors -->
+      <section class="container my-4">
+			<div class="d-flex justify-content-center flex-wrap text-center">
+				<div class="col">
+				<div class="author">
+					<div class="name">Faisal Shehzad</div>
+					<div>
+					<a href="mailto:faisal.shehzad@aau.at" class="text-dark" style="text-decoration: none;">
+						faisal.shehzad@aau.at
+					</a>
+					</div>
+					<div class="affil text-dark">University of Klagenfurt, Austria</div>
+				</div>
+				</div>
+
+				<div class="col">
+				<div class="author">
+					<div class="name">Dietmar Jannach</div>
+					<div>
+					<a href="mailto:dietmar.jannach@aau.at" class="text-dark" style="text-decoration: none;">
+						dietmar.jannach@aau.at
+					</a>
+					</div>
+					<div class="affil text-dark">University of Klagenfurt, Austria</div>
+				</div>
+				</div>
+        
+			</div>
+		</section>
+
+
+      <!-- Abstract-ish box -->
+      <section>
+        <p class="prose">
+          Graph Neural Networks (GNNs) have shown impressive performance in various domains. Motivated by this success,
+          several GNN-based session-based recommender systems (SBRS) have been proposed over the past few years.
+          The literature suggests that these algorithms can achieve strong performance and outperform well established
+          baseline neural models. However, some recent reproducibility studies suggest that the performance achieved by more
+          complex GNN-based models may sometimes be overstated and that these models may not be as impactful as expected.
+          Moreover, an inconsistent choice of datasets, preprocessing steps, and evaluation protocols across published works
+          makes it difficult to reliably assess progress in the field. In this present study, we reassess the performance of
+          three well-established baseline models—GRU4Rec, NARM, and STAMP—and compare them to six more recent GNN-based SBRS
+          within a standardized evaluation framework. Experiments on commonly used datasets for SBRS reveal that in particular
+          the GRU4Rec model, if properly tuned, is still highly competitive and leads to the best results on two out of three
+          datasets. Furthermore, we find that the performance of the GNN-based models varies largely across datasets.
+          Interestingly, only the quite early SR-GNN model turns out to be superior in terms of accuracy metrics on one of
+          the datasets. Overall, we speculate that the reasons for our surprising result may lie in insufficient
+          hyperparameter tuning processes for the baselines in the original papers.
+        </p>
+        <div class="mt-3 text-center">
+          <a href="https://github.com/Faisalse/RevisitGNN_SessionRec" class="fw-bold">GitHub: Source code and datasets</a>
+        </div>
+      </section>
+
+      <!-- Dynamic content target -->
+      <section class="container my-4">
+        <div id="table-placeholder" class="section-box section-box--plain"></div>
+      </section>
+    </div>
+
+    <!-- JS -->
+    <script>
+      // Solidify the page title on mobile (and guard against template scripts setting it to "undefined")
+      document.addEventListener('DOMContentLoaded', function () {
+        if (!document.title || document.title.toLowerCase() === 'undefined') {
+          document.title = "ACM RecSys ’25, Prague, Czech Republic";
+        }
+      });
+
+      // AJAX loader for secondary pages + make any tables responsive
+      document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('table-placeholder');
+
+        document.querySelectorAll('a[data-load]').forEach(link => {
+          link.addEventListener('click', async (ev) => {
+            ev.preventDefault();
+            const file = link.getAttribute('data-load');
+            try {
+              container.innerHTML = '<div class="text-center py-4">Loading…</div>';
+              const res = await fetch(file, { cache: 'no-store' });
+              const html = await res.text();
+              container.innerHTML = html;
+
+              // Style any tables inside loaded HTML
+              container.querySelectorAll('table').forEach(tb => {
+                tb.classList.add('table', 'table-striped', 'table-sm');
+                // Wrap to enable horizontal scroll on small screens
+                const wrapper = document.createElement('div');
+                wrapper.className = 'table-responsive';
+                tb.parentNode.insertBefore(wrapper, tb);
+                wrapper.appendChild(tb);
+              });
+
+              // Smooth scroll to content on mobile
+              container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } catch (e) {
+              container.innerHTML = '<div class="alert alert-danger">Error loading content.</div>';
+              console.error(e);
+            }
+          });
+        });
+      });
+    </script>
+
+    <!-- Bootstrap JS (navbar toggler, etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- (Optional) Remove legacy template JS that may override styles/title:
+         assets/js/jquery.min.js, jquery.dropotron.min.js, browser.min.js, breakpoints.min.js, util.js, main.js
+         If you keep them, ensure none rewrite document.title or nav behavior. -->
+  </body>
+</html>
